@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPM Services</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #000000;
+            background-color: #d2e2ff;
+        }
+        
+        header {
+            background-color: #d2e2ff;
+            padding: 20px 0;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4a90e2;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #000000;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #4a90e2;
+        }
+        
+        .nav-links a.active {
+            color: #4a90e2;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #e8f0ff 0%, #d4e7ff 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            padding: 40px 20px 60px;
+        }
+        
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            color: #4a90e2;
+            margin-bottom: 30px;
+            font-weight: bold;
+            line-height: 1.2;
+            margin-top: 0;
+        }
+        
+        .hero-content p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+        
+        .cta-button {
+            background-color: #ff8c00;
+            color: white;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            letter-spacing: 1px;
+        }
+        
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            padding: 20px;
+            min-height: 400px;
+        }
+        
+        .image-placeholder {
+            width: 100%;
+            height: 350px;
+            background-color: #ddd;
+            border: 2px dashed #999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 1.1rem;
+            border-radius: 10px;
+        }
+        
+        .services {
+            padding: 80px 20px;
+            background-color: #f8f9fa;
+        }
+        
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 50px 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+            cursor: pointer;
+        }
+        
+        .service-card:hover {
+            background-color: #ff8c00;
+            color: white;
+        }
+        
+        .service-card.highlight {
+            background-color: #ff8c00;
+            color: white;
+        }
+        
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background-color: #4a90e2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            overflow: hidden;
+        }
+        
+        .service-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        .service-card:hover .service-icon {
+            background-color: white;
+            color: #ff8c00;
+        }
+        
+        .service-card.highlight .service-icon {
+            background-color: white;
+            color: #ff8c00;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .about {
+            padding: 80px 20px;
+            background-color: white;
+        }
+        
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .about-content h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+        
+        .about-content p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .read-more-button {
+            background-color: #4a90e2;
+            color: white;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .read-more-button:hover {
+            background-color: #357abd;
+        }
+        
+        .about-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            padding: 20px;
+            min-height: 300px;
+        }
+        
+        .contact {
+            padding: 80px 20px;
+            background-color: #ffffff;
+        }
+        
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+        }
+        
+        .contact-form h2 {
+            font-size: 2.5rem;
+            color: #000000;
+            margin-bottom: 30px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #000000;
+            font-size: 1rem;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+        }
+        
+        .form-group textarea {
+            height: 120px;
+        }
+        
+        .send-button {
+            background-color: #4a90e2;
+            color: white;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .map-container {
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            height: 450px;
+            position: relative;
+        }
+        
+        .map-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            filter: contrast(1.1) saturate(1.2);
+        }
+        
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        #menu-toggle {
+            display: none;
+        }
+        
+        .burger {
+            display: none;
+            font-size: 30px;
+            cursor: pointer;
+            color: #000;
+        }
+        
+        @media (max-width: 768px) {
+            .burger {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <header>
+        <nav>
+            <div class="logo">RPM</div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>RPM Professional Car Repair & Maintenance Services</h1>
+                <p>
+                    We provide comprehensive automotive repair and maintenance services for all makes and models. Our certified technicians use state-of-the-art equipment and genuine parts to ensure your vehicle runs smoothly and safely. From routine maintenance to complex
+                    repairs, we deliver quality service you can trust.
+                </p>
+                <button class="cta-button">Contact Us</button>
+            </div>
+            <div class="hero-image">
+                <img src="./photo/car1.png">
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="services" id="services">
+        <div class="services-container">
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <img src="./photo/body.jpg">
+                    </div>
+                    <h3>Body</h3>
+                </div>
+                <div class="service-card highlight">
+                    <div class="service-icon">
+                        <img src="./photo/performance.png.jpg">
+                    </div>
+                    <h3>Performance</h3>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <img src="./photo/seat.jpg">
+                    </div>
+                    <h3>Interior</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="about-content">
+                <h2>About Us</h2>
+                <p>
+                    RPM has been serving the automotive repair industry for over one year. We specialize in comprehensive car maintenance and repair services, from engine diagnostics to brake systems, transmission repairs, and routine oil changes. Our experienced team of
+                    ASE-certified technicians is committed to providing honest, reliable service.
+                </p>
+                <p>
+                    We understand that your vehicle is essential to your daily life, which is why we offer fast, efficient service without compromising on quality. Our modern facility is equipped with the latest diagnostic tools and equipment to handle any automotive challenge.
+                </p>
+                <button class="read-more-button">Read More</button>
+            </div>
+            <div class="about-image">
+                <img src="./photo/car2.png">
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="additional-services">
+        <div class="services-container">
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <img src="./photo/Electric car.jpg">
+                    </div>
+                    <h3>Electric</h3>
+                </div>
+                <div class="service-card highlight">
+                    <div class="service-icon">
+                        <img src="./photo/Gasoline car.jpg">
+                    </div>
+                    <h3>Gasoline</h3>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <img src="./photo/Diesel cars.jpg">
+                    </div>
+                    <h3>Diesel</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <div class="contact-form">
+                <h2>Contact Us</h2>
+                <form>
+                    <div class="form-group">
+                        <input type="text" placeholder="Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Phone Number" required>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea placeholder="Message" required></textarea>
+                    </div>
+                    <button type="submit" class="send-button">Send</button>
+                </form>
+            </div>
+
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3450.123456789!2d33.4520533!3d27.1921191!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145287b2cd3dbbb3%3A0x2db807f98bd3c360!2sHurghada%2C%20Red%20Sea%20Governorate!5e0!3m2!1sen!2seg!4v1612345678901!5m2!1sen!2seg"></iframe>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
